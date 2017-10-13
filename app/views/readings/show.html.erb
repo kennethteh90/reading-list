@@ -1,0 +1,14 @@
+<% content_for :title, "#{@reading.name} | Kenneth's Reading List App" %>
+<% content_for :my_heading, "Kenneth's Reading List App" %>
+<h1><%= @reading.name %></h1>
+<h2><i><%= @reading.author%></i></h2>
+<p><strong>Completed:</strong> <%= @reading.completed ? 'Yes' : 'No'%></p>
+
+<%= link_to 'Edit', edit_reading_path(@reading), class: "btn btn-info" %>
+<%= link_to 'Remove', reading_path(@reading.id), method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
+
+<br><br>
+<%= link_to 'Back to home', readings_path %>
+
+
+<%= Lita: image carl the pug %>
