@@ -1,7 +1,11 @@
 class ReadingsController < ApplicationController
 
   def index
-    @readings = Reading.all
+    @readings = if params[:term]
+      Reading.where("name LIKE '%#{params[:term]}%' or author LIKE '%#{params[:term]}%'" )
+    else
+      @readings = Reading.all
+    end
   end
 
   def new
@@ -39,16 +43,28 @@ class ReadingsController < ApplicationController
     @reading = Reading.find(params[:id])
   end
 
-  def readit
-    @reading = Reading.find(params[:id])
-    @reading.toggle(:completed).save
-    redirect_to readings_path
+  # def readit
+  #   @reading = Reading.find(params[:id])
+  #   @reading.toggle(:completed).save
+  #   redirect_to readings_path
+  # end
+
+  def read
+      @reading = Reading.find(params[:id])
+      @reading.toggle(:completed).save
+      redirect_to readings_path
+  end
+
+  def unread
+      @reading = Reading.find(params[:id])
+      @reading.toggle(:completed).save
+      redirect_to readings_path
   end
 
   private
 
   def reading_params
-    params.require(:reading).permit(:name, :author, :completed)
+    params.require(:reading).permit(:name, :author, :completed, :term)
   end
 
 end

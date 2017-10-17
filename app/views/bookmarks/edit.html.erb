@@ -1,0 +1,13 @@
+<% content_for :title, "Edit bookmark | Kenneth's Reading List App" %>
+<% content_for :my_heading, "#{@reading.name} | Edit bookmark!" %>
+
+<%= simple_form_for [@reading, @bookmark], html: { class: 'form-horizontal' } do |f| %>
+  <%= f.input :page_number, placeholder: "151" %>
+  <%= f.input :description, placeholder: "Harry goes off alone, again" %>
+  <%= f.hidden_field :reading_id, value: @reading.id %>
+  <%= f.button :submit %>
+  <%= link_to 'Back to bookmarks', reading_bookmarks_path, class: "btn btn-outline-primary" %>
+  <%= link_to 'Back to home', readings_path, class: "btn btn-outline-info" %>
+<% end %>
+
+<br>
