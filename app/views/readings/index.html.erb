@@ -1,6 +1,17 @@
 <% content_for :title, "Kenneth's Reading List App" %>
 <% content_for :my_heading, "Welcome to Kenneth's Reading List App" %>
 
+<h4>Filter your books</h4>
+<%= form_tag(readings_path, method: :get) do %>
+  <%= text_field_tag :term, params[:term] %>
+  <%= submit_tag 'Filter', class: 'btn btn-outline-success' %>
+<% end %>
+<%= form_tag(readings_path, method: :get) do %>
+  <%= submit_tag 'Show all', class: 'btn btn-outline-info' %>
+<% end %>
+
+<br>
+
 <table class="table table-hover table-responsive" id="top">
   <thead class="thead-inverse">
     <th>Name</th>
@@ -12,8 +23,8 @@
     <tr>
       <td class="align-middle"><%= reading.name %> </td>
       <td class="align-middle"><%= reading.author %> </td>
-      <td><%= link_to "#{reading.completed ? 'Yes' : 'No' }", readit_path(reading.id), method: :patch, class: "btn btn-secondary unread_button #{'read_button' if reading.completed }" %></td>
-      <td><%= link_to 'Show', reading_path(reading.id), class: 'btn btn-info' %></td>
+      <td><%= link_to "#{reading.completed ? 'Yes' : 'No' }", "#{reading.completed ? unread_reading_path(reading.id) : read_reading_path(reading.id)}", method: :put, class: "btn btn-secondary unread_button #{'read_button' if reading.completed }" %></td>
+      <td><%= link_to 'Show Bookmarks', reading_bookmarks_path(reading.id), class: 'btn btn-info' %></td>
       <td><%= link_to 'Edit', edit_reading_path(reading), class: 'btn btn-primary'  %></td>
       <td><%= link_to 'Remove', reading_path(reading.id), method: :delete, data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' %></td>
     </tr>

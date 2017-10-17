@@ -55,6 +55,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'simple_form'
 
-gem 'wikipedia-client'
+# gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
 
-gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
+gem 'faker'

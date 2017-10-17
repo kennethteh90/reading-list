@@ -6,7 +6,10 @@
   <%= f.input :author %>
   <%= f.input :completed %>
   <%= f.button :submit %>
+  <%= link_to 'Add a bookmark!', new_reading_bookmark_path(@reading.id), class: 'btn btn-outline-primary'  %>
+  <%= link_to 'Back to home', readings_path, class: "btn btn-outline-info"  %>
 <% end %>
 
 <br>
-<%= link_to 'Back to home', readings_path %>
+<p>
+</p>

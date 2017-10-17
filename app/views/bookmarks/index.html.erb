@@ -1,0 +1,25 @@
+<% content_for :title, "#{@reading.name} Bookmarks | Kenneth's Reading List App" %>
+<% content_for :my_heading, "#{@reading.name} | Bookmarks" %>
+
+<table class="table table-hover table-responsive" id="top">
+  <thead class="thead-inverse">
+    <th>Page number</th>
+    <th colspan="3">Description</th>
+  </thead>
+  <tbody>
+    <% @bookmarks.each do |bookmark| %>
+    <tr>
+      <td class="align-middle"><%= bookmark.page_number %> </td>
+      <td class="align-middle"><%= bookmark.description %> </td>
+      <td><%= link_to 'Edit', edit_reading_bookmark_path(@reading.id, bookmark), class: 'btn btn-primary'  %></td>
+      <td><%= link_to 'Remove', reading_bookmark_path(@reading.id, bookmark.id), method: :delete, data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<a href="#top" class="text-right">Back to top!</a>
+<br><br>
+<p>
+  <%= link_to 'Add a bookmark!', new_reading_bookmark_path(@reading.id), class: 'btn btn-outline-primary'  %>
+  <%= link_to 'Back to home', readings_path, class: "btn btn-outline-info"  %>
+</p>
