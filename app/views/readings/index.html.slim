@@ -1,0 +1,32 @@
+- content_for :title, "Kenneth's Reading List App"
+- content_for :my_heading, "Welcome to Kenneth's Reading List App"
+
+h4 Filter your books
+= form_tag(readings_path, method: :get) do
+  = text_field_tag :term, params[:term], class: 'm-2', autofocus: true
+  = submit_tag 'Filter', class: 'btn btn-outline-success my-button m-2'
+  = link_to 'Show all', readings_path, class: 'btn btn-outline-info my-button m-2'
+
+br
+
+table.table.table-hover.table-responsive#top
+  thead.thead-inverse
+    th Name
+    th Author
+    th colspan="5" Read?
+  tbody
+    - @readings.each do |reading|
+      tr
+        td.align-middle = reading.name
+        td.align-middle = reading.author
+        td.align-middle = link_to reading.completed ? 'Yes' : 'No', reading.completed ? unread_reading_path(reading) : read_reading_path(reading) , method: :put, class: "btn btn-secondary unread_button #{'read_button' if reading.completed }"
+        td = link_to 'Show Bookmarks', reading_bookmarks_path(reading), class: 'btn btn-info'
+        td = link_to 'Edit', edit_reading_path(reading), class: 'btn btn-primary'
+        td = link_to 'Remove', reading_path(reading), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+a.text-right href="#top" Back to top!
+
+br
+br
+
+p = link_to 'Add a book!', new_reading_path, class: "btn btn-dark"

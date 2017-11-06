@@ -1,3 +1,28 @@
 // Place all the styles related to the readings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.my_table {
+  padding: 10px;
+  margin: 30px 0px;
+}
+
+.unread_button {
+min-width: 80px;
+}
+
+.unread_button:hover {
+  background-color: rgb(114, 157, 92);
+}
+
+.read_button {
+  background-color: rgb(114, 157, 92);
+}
+
+.read_button:hover {
+  background-color: grey;
+}
+
+.my-button {
+  width: 100px;
+}

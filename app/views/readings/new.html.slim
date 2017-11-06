@@ -1,0 +1,11 @@
+- content_for :title, "Add a book | Kenneth's Reading List App"
+- content_for :my_heading, "Add a book to your reading list!"
+
+= simple_form_for @reading, html: { class: 'form-horizontal' } do |f|
+  = f.input :name, placeholder: "Harry Potter"
+  = f.input :author, placeholder: "JK Rowling"
+  = f.input :completed
+  = f.button :submit, class: "m-2"
+  = link_to 'Back to home', readings_path, class: 'btn btn-outline-info m-2'
+
+br
